@@ -1,5 +1,6 @@
 const BlackPaperToken = artifacts.require("BlackPaperToken");
 const ERC20 = artifacts.require("ERC20"); // Assuming you have an ERC20 contract in your truffle project
+var ethers = require('ethers');
 
 contract('BlackPaperToken', (accounts) => {
     let blackPaperToken;
@@ -8,10 +9,11 @@ contract('BlackPaperToken', (accounts) => {
 
 
     it('should deploy BlackPaperToken contract', async () => {
-        const uniswapMockAddress = user1; // Just for testing. Ideally, you'd mock a Uniswap router for more comprehensive tests.
+        //const uniswapMockAddress = user1; // Just for testing. Ideally, you'd mock a Uniswap router for more comprehensive tests.
         const erc20MockAddress = ERC20.address; // Assuming you've deployed a mock ERC20 or the real one.
 
-        blackPaperToken = await BlackPaperToken.new(uniswapMockAddress, erc20MockAddress, { from: deployer });
+        //blackPaperToken = await BlackPaperToken.new(uniswapMockAddress, erc20MockAddress, { from: deployer });
+        blackPaperToken = await BlackPaperToken.new(erc20MockAddress, { from: deployer });
 
         assert(blackPaperToken.address !== '');
     });
